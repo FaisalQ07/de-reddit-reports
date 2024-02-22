@@ -4,6 +4,9 @@ import praw
 import pprint
 import pandas as pd
 import requests
+
+from time import sleep
+
 if 'data_loader' not in globals():
     from mage_ai.data_preparation.decorators import data_loader
 if 'test' not in globals():
@@ -82,16 +85,19 @@ def extract_subreddit_data(subreddit_posts_object):
     list_of_posts = []
     try:
         for post in subreddit_posts_object:
+            sleep(6)
             post_dict = vars(post)
-            subreddit_dict = {field: post_dict[field] for field in POST_FIELDS}
-            subreddit_dict["author"] = str(subreddit_dict["author"])
-            list_of_posts.append(subreddit_dict)
+            pprint.pprint(post_dict)
+            break
+            # subreddit_dict = {field: post_dict[field] for field in POST_FIELDS}
+            # subreddit_dict["author"] = str(subreddit_dict["author"])
+            # list_of_posts.append(subreddit_dict)
         
-        reddit_df = pd.DataFrame(list_of_posts)
+        # reddit_df = pd.DataFrame(list_of_posts)
     except Exception as e:
         print(f"There has been an issue while parsing the subreddit. Error {e}")
         sys.exit(1)
-    return reddit_df
+    return #reddit_df
 
 
 
