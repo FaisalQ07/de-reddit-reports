@@ -9,7 +9,7 @@ blocks:
   language: python
   name: load_reddit_data
   retry_config: null
-  status: executed
+  status: updated
   timeout: null
   type: data_loader
   upstream_blocks: []
@@ -35,7 +35,7 @@ settings:
 spark_config: {}
 tags: []
 type: python
-updated_at: '2024-02-22 19:36:05'
+updated_at: '2024-02-23 22:46:22'
 uuid: extract_reddit_data
 variables:
   sub_reddit: dataengineering
