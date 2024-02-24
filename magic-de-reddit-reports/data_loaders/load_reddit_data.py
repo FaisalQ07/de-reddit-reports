@@ -111,7 +111,7 @@ def load_data_from_api(*args, **kwargs):
         extraction_end_date = convert_to_local_time(datetime.utcfromtimestamp(posts_df['created_utc'].max()))
      # Update metadata_df
     metadata_df = pd.DataFrame({
-        'pipeline_run_date': [kwargs['execution_date']],  # Add pipeline run date to metadata
+        'pipeline_run_date': [convert_to_local_time(kwargs['execution_date'])],  # Add pipeline run date to metadata
         'extraction_start_date': [last_run_date],
         'extraction_end_date': [extraction_end_date],
         'total_posts': [total_posts],
