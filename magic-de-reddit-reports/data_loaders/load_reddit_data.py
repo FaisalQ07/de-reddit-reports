@@ -74,13 +74,11 @@ def load_data_from_api(*args, **kwargs):
     if not metadata_df.empty:
         # Fetch the last run time
         last_run_date = metadata_df['extraction_end_date'].iloc[0]
-        print('last_run_date: {}'.format(last_run_date))
     else:
         # If metadata_df is empty, set last_run_date to current time minus 7 days and convert to local timezone (toronto)
         last_run_date = convert_to_local_time(datetime.now() - timedelta(days=1))
 
     
-
     # Extract Reddit posts and comments 
     posts, comments = extract_reddit_data(last_run_date, **kwargs)
 
@@ -113,12 +111,11 @@ def load_data_from_api(*args, **kwargs):
         extraction_end_date = convert_to_local_time(datetime.utcfromtimestamp(posts_df['created_utc'].max()))
      # Update metadata_df
     metadata_df = pd.DataFrame({
-        'last_run_date': [today],
+        'pipeline_run_date': [kwargs['execution_date']],  # Add pipeline run date to metadata
         'extraction_start_date': [last_run_date],
         'extraction_end_date': [extraction_end_date],
         'total_posts': [total_posts],
-        'total_comments': [total_comments],
-        'pipeline_run_date': [kwargs['execution_date']]  # Add pipeline run date to metadata
+        'total_comments': [total_comments]
     })
 
     write_metadata(bucket_name, metadata_df, **kwargs)
@@ -220,8 +217,6 @@ def extract_reddit_data(last_run_date, **kwargs):
     try:
         # get instance of reddit api using praw
         reddit = reddit_api_connect()
-        if reddit:
-            print('reddit_api_connect() success')
 
         subreddit = reddit.subreddit(kwargs['sub_reddit'])
         posts = []
@@ -281,8 +276,6 @@ def reddit_api_connect():
         print(f"Unable to connect to Reddit API for instantiation. Error: {e}")
         sys.exit(1) 
     return instance
-
-
 
 
 @test
