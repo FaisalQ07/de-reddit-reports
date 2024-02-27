@@ -11,7 +11,7 @@ blocks:
   language: python
   name: load_reddit_data
   retry_config: null
-  status: executed
+  status: updated
   timeout: null
   type: data_loader
   upstream_blocks: []
@@ -33,6 +33,21 @@ blocks:
   type: data_loader
   upstream_blocks: []
   uuid: get_gcs_reddit_data
+- all_upstream_blocks_executed: true
+  color: null
+  configuration: {}
+  downstream_blocks: []
+  executor_config: null
+  executor_type: local_python
+  has_callback: false
+  language: python
+  name: test_pyspark
+  retry_config: null
+  status: executed
+  timeout: null
+  type: data_loader
+  upstream_blocks: []
+  uuid: test_pyspark
 cache_block_output_in_memory: false
 callbacks: []
 concurrency_config: {}
@@ -54,9 +69,9 @@ settings:
 spark_config: {}
 tags: []
 type: python
-updated_at: '2024-02-24 23:09:31'
+updated_at: '2024-02-27 21:54:35'
 uuid: extract_reddit_data_to_gcs
 variables:
   sub_reddit: dataengineering
-variables_dir: /home/src/mage_data/magic-de-reddit-reports
+variables_dir: /root/.mage_data/magic-de-reddit-reports
 widgets: []

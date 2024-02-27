@@ -106,7 +106,7 @@ def load_data_from_api(*args, **kwargs):
     # Calculate total posts and comments
     total_posts = len(posts_df)
     total_comments = len(comments_df)
-    # Update last_run_date to the maximum created_utc in posts_df
+    # Update extraction_end_date to the maximum created_utc in posts_df
     if not posts_df.empty:
         extraction_end_date = convert_to_local_time(datetime.utcfromtimestamp(posts_df['created_utc'].max()))
      # Update metadata_df
