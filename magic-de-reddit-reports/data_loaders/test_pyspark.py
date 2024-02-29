@@ -26,8 +26,11 @@ def load_data(*args, **kwargs):
     # Create a DataFrame
     df = spark.createDataFrame(data, schema)
 
+    df.write.parquet('/home/src/sample_data/sample.parquet')
 
-    return df
+    parquet_df = spark.read.parquet('/home/src/sample_data/sample.parquet')
+
+    return parquet_df
 
 
 @test
