@@ -6,16 +6,11 @@
 import argparse
 import pyspark
 from pyspark.sql import SparkSession
-from pyspark.conf import SparkConf
-from pyspark.context import SparkContext
 
-from pyspark.sql.types import StringType
 from pyspark.sql import functions as F
 import pyspark.sql.types as T
 from textblob import TextBlob
 
-
-credentials_location = '/home/faisal/my_projects/de-reddit-reports/keys/de-reddit-reports-f9479aba34a3.json'
 
 parser = argparse.ArgumentParser()
 parser.add_argument('--input_date', required=True)
@@ -25,26 +20,11 @@ input_date = args.input_date
 input_subreddit = args.input_subreddit
 
 
-conf = SparkConf() \
-    .setMaster('local[*]') \
-    .setAppName('test') \
-    .set("spark.jars", "../lib/gcs-connector-hadoop3-2.2.5.jar") \
-    .set("spark.hadoop.google.cloud.auth.service.account.enable", "true") \
-    .set("spark.hadoop.google.cloud.auth.service.account.json.keyfile", credentials_location)
-
-
-sc = SparkContext(conf=conf)
-
-hadoop_conf = sc._jsc.hadoopConfiguration()
-
-hadoop_conf.set("fs.AbstractFileSystem.gs.impl",  "com.google.cloud.hadoop.fs.gcs.GoogleHadoopFS")
-hadoop_conf.set("fs.gs.impl", "com.google.cloud.hadoop.fs.gcs.GoogleHadoopFileSystem")
-hadoop_conf.set("fs.gs.auth.service.account.json.keyfile", credentials_location)
-hadoop_conf.set("fs.gs.auth.service.account.enable", "true")
-
 spark = SparkSession.builder \
-    .config(conf=sc.getConf()) \
+    .appName('test') \
     .getOrCreate()
+
+spark.conf.set('temporaryGcsBucket', 'dataproc-staging-na-northeast1-667281304179-9us80iur')
 
 df_post = spark.read.parquet(f'gs://reddit-terra-bucket/subreddit/{input_subreddit}/post/{input_date}/post.parquet')
 df_comment = spark.read.parquet(f'gs://reddit-terra-bucket/subreddit/{input_subreddit}/comment/{input_date}/comment.parquet')
@@ -160,8 +140,10 @@ if count_verification_result:
     (
         result_df
         .write
-        .partitionBy("post_id")
-        .parquet(f'gs://reddit-terra-bucket/subreddit/{input_subreddit}/staging/post_comment/{input_date}/post_comment.parquet', mode='overwrite')
+        .format('bigquery')
+        .option('table', f'reddit_dataset.{input_subreddit}_staging')
+        .mode("overwrite")
+        .save()
     )
 
 
