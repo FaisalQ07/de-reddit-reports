@@ -3,22 +3,28 @@ FROM mageai/mageai:latest
 ARG PIP=pip3
 ARG USER_CODE_PATH=/home/src/${PROJECT_NAME}
 
-# Note: this overwrites the requirements.txt file in your new project on first run. 
-# You can delete this line for the second run :) 
-COPY requirements.txt ${USER_CODE_PATH}requirements.txt 
 
-RUN pip3 install -r ${USER_CODE_PATH}requirements.txt
+# Install dependencies
+RUN apt-get update && \
+    apt-get install -y \
+    curl \
+    && rm -rf /var/lib/apt/lists/*
 
-# Add Debian Bullseye repository
-RUN echo 'deb http://deb.debian.org/debian bullseye main' > /etc/apt/sources.list.d/bullseye.list
+# Download the Google Cloud SDK archive
+RUN curl -O https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-cli-466.0.0-linux-x86_64.tar.gz
 
-# Install OpenJDK 11
-RUN apt-get update -y && \
-    apt-get install -y openjdk-11-jdk
+# Extract the archive to the home directory
+RUN tar -xf google-cloud-cli-466.0.0-linux-x86_64.tar.gz -C /usr/local/
 
-# Remove Debian Bullseye repository
-RUN rm /etc/apt/sources.list.d/bullseye.list
+# Run the installation script
+RUN /usr/local/google-cloud-sdk/install.sh
 
-RUN ${PIP} install pyspark
+# Add gcloud CLI to the PATH
+ENV PATH="/usr/local/google-cloud-sdk/bin:${PATH}"
+
+# Install Python dependencies
+COPY requirements.txt ${USER_CODE_PATH}requirements.txt
+RUN ${PIP} install -r ${USER_CODE_PATH}requirements.txt
 
 ENV MAGE_DATA_DIR=
+
