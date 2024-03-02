@@ -60,7 +60,7 @@ COMMENT_FIELDS_DF = [
 
 os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "/home/src/keys/de-reddit-reports-f9479aba34a3.json"
 
-bucket_name = 'reddit-terra-bucket'
+# bucket_name = 'reddit-terra-bucket'
 
 @data_loader
 def load_data_from_api(*args, **kwargs):
@@ -69,7 +69,7 @@ def load_data_from_api(*args, **kwargs):
     """
     
     # Read metadata
-    metadata_df = read_metadata(bucket_name, **kwargs)
+    metadata_df = read_metadata(**kwargs)
     # Check if metadata_df is empty
     if not metadata_df.empty:
         # Fetch the last run time
@@ -77,6 +77,7 @@ def load_data_from_api(*args, **kwargs):
     else:
         # If metadata_df is empty, set last_run_date to current time minus 7 days and convert to local timezone (toronto)
         last_run_date = convert_to_local_time(datetime.now() - timedelta(days=1))
+    print(last_run_date)
 
     
     # Extract Reddit posts and comments 
@@ -99,8 +100,8 @@ def load_data_from_api(*args, **kwargs):
     post_path = f'subreddit/{submission_name}/post/{today.year}/{today.month}/{today.day}/post.parquet'
     comment_path = f'subreddit/{submission_name}/comment/{today.year}/{today.month}/{today.day}/comment.parquet'
 
-    write_dataframe_to_gcs(posts_df, 'post', bucket_name, post_path)
-    write_dataframe_to_gcs(comments_df, 'comment', bucket_name, comment_path)
+    write_dataframe_to_gcs(posts_df, 'post', post_path, **kwargs)
+    write_dataframe_to_gcs(comments_df, 'comment', comment_path, **kwargs)
 
 
     # Calculate total posts and comments
@@ -118,13 +119,14 @@ def load_data_from_api(*args, **kwargs):
         'total_comments': [total_comments]
     })
 
-    write_metadata(bucket_name, metadata_df, **kwargs)
+    write_metadata(metadata_df, **kwargs)
 
     return metadata_df
 
 
-def write_dataframe_to_gcs(dataframe, dataframe_type, bucket_name, destination_path):
+def write_dataframe_to_gcs(dataframe, dataframe_type, destination_path, **kwargs):
     file_name = f"temp_{dataframe_type}.parquet"
+    bucket_name = kwargs['bucket_name']
     try:
         client = storage.Client()
         bucket = client.get_bucket(bucket_name)
@@ -151,9 +153,10 @@ def write_dataframe_to_gcs(dataframe, dataframe_type, bucket_name, destination_p
             print(f"File '{file_name}' does not exist.")
 
 
-def write_metadata(bucket_name, metadata_df, **kwargs):
+def write_metadata(metadata_df, **kwargs):
      # Define the filename with interpolation
     file_name = "temp_metadata.parquet"
+    bucket_name = kwargs['bucket_name']
     try:
         client = storage.Client()
         bucket = client.get_bucket(bucket_name)
@@ -185,10 +188,10 @@ def write_metadata(bucket_name, metadata_df, **kwargs):
             print(f"File '{file_name}' does not exist.")
 
 
-def read_metadata(bucket_name, **kwargs):
+def read_metadata(**kwargs):
     try:
         client = storage.Client()
-        bucket = client.get_bucket(bucket_name)
+        bucket = client.get_bucket(kwargs['bucket_name'])
         submission_name = kwargs['sub_reddit']
         blob = bucket.blob(f"subreddit/{submission_name}/metadata/metadata.parquet")
         with open("temp_metadata.parquet", "wb") as file_obj_post:
@@ -238,7 +241,7 @@ def extract_reddit_data(last_run_date, **kwargs):
                 post_data['author'] = str(post_data['author'])
                 posts.append(post_data)
                 # Fetch all comments for the submission
-                submission.comments.replace_more(limit=None)
+                submission.comments.replace_more(limit=10)
                 for comment in submission.comments.list():
                     # Check if the comment's creation time is after the last run date and before today at midnight
                     if last_run_date.timestamp() < comment.created_utc < today_midnight.timestamp():
