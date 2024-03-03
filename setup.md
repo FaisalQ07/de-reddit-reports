@@ -3,7 +3,8 @@
 ## Table of Contents
 1. [Configure SSH Keys](#configure-ssh-keys)
 2. [Create a Virtual Machine](#create-a-virtual-machine)
-3. [Configure the Virtual Machine](#configure-the-virtual-machine)
+3. [SSH: Aliasing Credentials with Config File](#ssh-aliasing-credentials-with-config-file)
+4. [Configure the Virtual Machine](#configure-the-virtual-machine)
    - [Installing Anaconda](#installing-anaconda)
    - [Installing Docker](#installing-docker)
    - [Installing docker-compose](#installing-docker-compose)
@@ -13,8 +14,8 @@
    - [Authenticate GCP using the service account credentials](#authenticate-gcp-using-the-service-account-credentials)
    - [Installing Pyspark](#installing-pyspark)
    - [Cloning the course repo](#cloning-the-course-repo)
-4. [Open a Remote Connection from Visual Studio Code](#open-a-remote-connection-from-visual-studio-code)
-5. [Conclusion](#conclusion)
+5. [Open a Remote Connection from Visual Studio Code](#open-a-remote-connection-from-visual-studio-code)
+6. [Conclusion](#conclusion)
 
 ## Configure SSH Keys
 1. Generate a new SSH key with the following commands:
@@ -39,4 +40,41 @@
 
 ## Create a Virtual Machine
 To set up a Virtual Machine:  
-1.  Go to Compute Engine > VM Instances
+1. Go to Compute Engine > VM Instances  
+   ![create_vm](./README_resources/setup/create_vm.PNG) 
+2. Click on Create Instance.  
+   ![create_vm_instance](./README_resources/setup/create_vm_instance.PNG) 
+3. Populate the configurations for the VM with the following details (Name and Region can be as per your preference):  
+  *  Change name to <*preferred-name*>
+  *  Select Region 
+  *  Under Machine Config, select *series* - *E2* , *Machine type* - *e2-standard-4* 
+  *  Under Boot Disk, select *Image type* - *Ubuntu 20.04 LTS*, *size* - *40 GB* 
+  *  Leave the rest of the configurations to default values and click Create
+4. This will spin up a virtual machine instance for you. In order to ssh into this instance, run the following command:   
+    ```bash
+       ssh -i <PATH_TO_PRIVATE_KEY> <USERNAME>@<EXTERNAL_IP>
+    ```
+    *  Here's an example on my system:  
+       ![ssh_login](./README_resources/setup/ssh_login.PNG)
+5. You can also configure an ssh alias, which is a convenient way to store the ssh details in a config file.
+
+## SSH: Aliasing Credentials with Config File
+**Setting up Config file**
+1. To set up an SSH alias, you first need to locate your SSH config file. This file is located in the .ssh directory in your home directory. The file is typically called config. If the file does not exist, you can create it.  
+2. Once you have located the config file, open it in a text editor. You can use any text editor you like, such as nano or vim or VS Code. To create an alias, add the following lines to the file:  
+  ![config_file](./README_resources/setup/config_file.PNG)
+3. The above credentials are to establish an SSH connection to a running Google Virtual Machine Instance. Here:  
+  *  de-zoomcamp is the alias.
+  *  34.123.38.8 is the external IP Address of the running VM instance.  
+  *  faisal is the username.  
+  *  c:/Users/Admin/.ssh/gcp is the path of the private key file.
+  *  (<*optional*>) LocalForward - it forwards local port 8888 to the SSH server's local address (127.0.0.1) on port 8888.  
+
+**Connecting to Virtual Machine**
+1. Once you have created your alias, you can connect to the virtual machine by running the following command:
+    ```bash
+    ssh de-zoomcamp
+    ```  
+    * Here is the result:  
+    ![ssh_login_via_config](./README_resources/setup/ssh_login_via_config.PNG)
+
