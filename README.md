@@ -29,7 +29,7 @@ The Data Engineering Reddit Data Dashboard provides a comprehensive view of key 
 <img src="./README_resources/de-reddit-reports-architecture.drawio.png" alt="project_structure" width="1200"/>
 
 ## VM Setup Guide
-[Link to setup guide](./setup.md)
+[Link to setup guide](./vm_setup.md)
 
 
 
