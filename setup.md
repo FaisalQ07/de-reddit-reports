@@ -105,6 +105,27 @@ To set up a Virtual Machine:
 
 
 ### Installing Docker  
+1. Run the following commands:  
+   ```bash
+     sudo apt-get update
+     sudo apt-get upgrade
+     sudo apt-get install docker.io 
+   ```  
+2. This will install docker but you'll not be able to run it without sudo. It'll throw a permission denied error when trying to run a container as `docker run hello-world`  
+  *  Error:  
+     ![docker_run_permission_error](./README_resources/setup/docker_run_permission_error.PNG)
+3. To run docker without sudo, run the following commands:  
+   ```bash
+      sudo groupadd docker
+      sudo gpasswd -a $USER docker
+      sudo service docker restart
+   ```  
+4. Log out of the ssh session and log back in to re-evaluate the group memberships and try running the docker run hello-world command.  
+   It works now, without using sudo  
+   ![docker_run_success](./README_resources/setup/docker_run_success.PNG)
+
+
+### Installing docker-compose  
 
 
   
