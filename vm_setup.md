@@ -253,7 +253,7 @@ Below steps can be followed for their installation -
    
 
 ## Project Setup Guide  
-![Link to Project Setup Guide](./project_setup.md)
+[Link to Project Setup Guide](./project_setup.md)
 
 
 
