@@ -76,5 +76,39 @@ To set up a Virtual Machine:
     ssh de-zoomcamp
     ```  
     * Here is the result:  
-    ![ssh_login_via_config](./README_resources/setup/ssh_login_via_config.PNG)
+    ![ssh_login_via_config](./README_resources/setup/ssh_login_via_config.PNG)  
+
+## Configure the Virtual Machine
+### Installing Anaconda  
+1. Visit [Anaconda's website](https://www.anaconda.com/download) and copy the link to Linux 64-Bit Installer  
+   ![anaconda_linux_installer](./README_resources/setup/anaconda_linux_installer.PNG)  
+2. Download the file in the VM:  
+   ```bash
+       wget https://repo.anaconda.com/archive/Anaconda3-2023.09-0-Linux-x86_64.sh
+   ```  
+3. Run the downloaded file:  
+   ```bash
+      bash  Anaconda3-2023.09-0-Linux-x86_64.sh
+   ```  
+4. Keep pressing Enter to scroll down and enter yes to accept the license terms.
+5. Press Enter to confirm the default location.
+6. Enter yes to run the conda init when asked.
+7. To automatically activate the Conda base environment upon logging into your VM:    
+    *  do *__vim ~/.bashrc__*  
+    *  Go to the end of the file and press 'i' to activate insert mode  
+    *  Paste to the end, `eval "$(/path/to/your/anaconda3/bin/conda shell.bash hook)"`
+    *  Press __Esc__ to exit insert mode, then type `:wq` to save and exit __vim__ editor
+    *  type logout
+    *  Type `ssh de-zoomcamp` to login back into the VM, and it will show `(base)` representing conda activation  
+    * Here is the result:  
+    ![conda_activate](./README_resources/setup/condo_activate.PNG)  
+
+
+### Installing Docker  
+
+
+  
+
+  
+
 
