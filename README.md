@@ -1,6 +1,14 @@
 # de-reddit-reports
 
-## Powere by Mage-ai
+
+## Table of Contents
+1. [About](#about)
+2. [Features](#features)
+3. [Project Structure](#project-structure)
+4. [Setup Guide](#setup-guide)
+
+## About
+**Powered by Mage-ai**
 <div>
 <img src="https://github.com/mage-ai/assets/blob/main/mascots/mascots-shorter.jpeg?raw=true">
 </div>
@@ -19,3 +27,9 @@ The Data Engineering Reddit Data Dashboard provides a comprehensive view of key 
 ## Project Structure
 
 <img src="./README_resources/de-reddit-reports-architecture.drawio.png" alt="project_structure" width="1200"/>
+
+## Setup Guide
+[Link to setup guide](./setup.md)
+
+
+
