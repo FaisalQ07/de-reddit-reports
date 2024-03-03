@@ -8,7 +8,6 @@
    - [Installing Anaconda](#installing-anaconda)
    - [Installing Docker](#installing-docker)
    - [Installing docker-compose](#installing-docker-compose)
-   - [Installing Pgcli](#installing-pgcli)
    - [Installing Terraform](#installing-terraform)
    - [Creating a Service Account](#creating-a-service-account)
    - [Authenticate GCP using the service account credentials](#authenticate-gcp-using-the-service-account-credentials)
@@ -68,7 +67,7 @@ To set up a Virtual Machine:
   *  34.123.38.8 is the external IP Address of the running VM instance.  
   *  faisal is the username.  
   *  c:/Users/Admin/.ssh/gcp is the path of the private key file.
-  *  (<*optional*>) LocalForward - it forwards local port 8888 to the SSH server's local address (127.0.0.1) on port 8888.  
+  *  <*optional*> LocalForward - it forwards local port 8888 to the SSH server's local address (127.0.0.1) on port 8888.  
 
 **Connecting to Virtual Machine**
 1. Once you have created your alias, you can connect to the virtual machine by running the following command:
@@ -145,8 +144,22 @@ To set up a Virtual Machine:
        `export PATH="${HOME}/bin:${PATH}"`  
     * Press `Ctrl+O` > `enter` > `Ctrl+X`  
 6. docker-compose installed successfully.  
-   ![docker-compose_installed](./README_resources/setup/docker-compose_installed.PNG)
+   ![docker-compose_installed](./README_resources/setup/docker-compose_installed.PNG)  
 
+
+### Installing Terraform  
+1. From terraform's [installation website](https://developer.hashicorp.com/terraform/install), Copy the link for Linux's AMD64 file.
+2. Go to the bin folder created previously and download the file using `wget`:  
+   ```bash
+      cd ~/bin
+      wget https://releases.hashicorp.com/terraform/1.7.4/terraform_1.7.4_linux_amd64.zip
+   ```  
+3. To unzip this file, install the unzip package: `sudo apt-get install unzip`  
+4. Unzip the file: `unzip terraform_1.7.4_linux_amd64.zip`  
+5. There will be a terraform executable file extracted. You can delete the zip file.
+6. Since this file is in the bin folder and the bin folder is in the path, everything is set up.
+7. Try running the following command to verify terraform's installation: `terraform --version`  
+   ![terraform_installed](./README_resources/setup/terraform_installed.PNG)
 
   
 
