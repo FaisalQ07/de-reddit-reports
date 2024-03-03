@@ -159,7 +159,39 @@ To set up a Virtual Machine:
 5. There will be a terraform executable file extracted. You can delete the zip file.
 6. Since this file is in the bin folder and the bin folder is in the path, everything is set up.
 7. Try running the following command to verify terraform's installation: `terraform --version`  
-   ![terraform_installed](./README_resources/setup/terraform_installed.PNG)
+   ![terraform_installed](./README_resources/setup/terraform_installed.PNG)  
+
+
+### Creating a service account  
+1. In your GCP project, go to IAM and Admin > Service Accounts  
+   ![iam](./README_resources/setup/iam.PNG)
+2. Click on the "Create Service Account" button at the top and provide the service account name.  
+3. Assign the following roles to this service account:  
+   ![assign_roles_to_service_account](./README_resources/setup/assign_roles_to_service_account.PNG)  
+4. Click Save. The service account is now created.
+5. To generate keys for this service account, click on the 3-dot menu and then on "manage keys"  
+   ![manage_keys](./README_resources/setup/manage_keys.png)  
+6. On the following page, click on Add Key > Create new key> JSON format. Click Create.
+7. This will download a JSON file. This is to be uploaded to the VM using SFTP (or just drag and drop via VS Code).
+8. Next, create a folder in *home dir* `.gcp` and upload the JSON credentials file into it  
+
+
+### Authenticate GCP using the service account credentials  
+1. To authenticate GCP, we need to set an environment variable  
+    *  `$GOOGLE_APPLICATION_CREDENTIALS` to point to the service account JSON file:  
+       ```bash
+          export GOOGLE_APPLICATION_CREDENTIALS=/home/faisal/.gcp/<credentials-filename>.json
+       ```  
+2. Next, authenticate GCP using the following command:  
+   ```bash
+      gcloud auth activate-service-account --key-file $GOOGLE_APPLICATION_CREDENTIALS
+   ```
+
+
+   
+
+
+
 
   
 
