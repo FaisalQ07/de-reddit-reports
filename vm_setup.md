@@ -1,4 +1,4 @@
-# de-reddit-reports 2024 Data Engineering Setup Guide
+# de-reddit-reports 2024 Data Engineering Google VM Instance Setup Guide
 
 ## Table of Contents
 1. [Configure SSH Keys](#configure-ssh-keys)
