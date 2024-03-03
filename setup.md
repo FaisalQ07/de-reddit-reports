@@ -12,6 +12,8 @@
    - [Creating a Service Account](#creating-a-service-account)
    - [Authenticate GCP using the service account credentials](#authenticate-gcp-using-the-service-account-credentials)
    - [Installing Pyspark](#installing-pyspark)
+     - [Installing Java](#installing-java)
+     - [Installing Spark](#installing-spark)
    - [Cloning the course repo](#cloning-the-course-repo)
 5. [Open a Remote Connection from Visual Studio Code](#open-a-remote-connection-from-visual-studio-code)
 6. [Conclusion](#conclusion)
@@ -188,7 +190,65 @@ To set up a Virtual Machine:
    ```
 
 
+### Installing Pyspark  
+Pyspark installation requires Java and Spark installation.  
+Below steps can be followed for their installation -   
+### Installing Java   
+1. Download OpenJDK 11 or Oracle JDK 11 (It's important that the version is 11 - spark requires 8 or 11)
+2. We'll use OpenJDK. 
+   Download it to `~/spark` as:  
+   ```bash
+      wget https://download.java.net/java/GA/jdk11/9/GPL/openjdk-11.0.2_linux-x64_bin.tar.gz
+   ```  
+3. Unpack it:  
+   ```bash
+      tar xzfv openjdk-11.0.2_linux-x64_bin.tar.gz
+   ```  
+4. define `JAVA_HOME` and add it to `PATH`:  
+   ```bash
+      export JAVA_HOME="${HOME}/spark/jdk-11.0.2"
+      export PATH="${JAVA_HOME}/bin:${PATH}"
+   ```
+5. check that it works using command: `java --version`  
+   ![java_version](./README_resources/setup/java_version.PNG)
+6. Remove the archive: 
+   ```bash
+      rm openjdk-11.0.2_linux-x64_bin.tar.gz
+   ```  
+
+### Installing Spark  
+1. Download Spark. Use 3.5.0 (or 3.5.*) version  to `~/spark` as:  
+   ```bash
+      wget https://dlcdn.apache.org/spark/spark-3.5.1/spark-3.5.1-bin-hadoop3.tgz
+   ```  
+2. Unpack:  `tar xzfv spark-3.5.1-bin-hadoop3.tgz`  
+3. Remove the archive: `rm spark-3.5.1-bin-hadoop3.tgz`  
+4. Add it to `PATH`:  
+   ```bash
+      export SPARK_HOME="${HOME}/spark/spark-3.5.1-bin-hadoop3"
+      export PATH="${SPARK_HOME}/bin:${PATH}"
+   ```  
+5. Testing Spark. Execute `spark-shell` and run the following:  
+   ```bash
+      spark-shell
+      val data = 1 to 10000
+      val distData = sc.parallelize(data)
+      distData.filter(_ < 10).collect()
+   ```
+
+**Pyspark**  
+1. Pyspark requires python to be already installed. This is covered in the section [Installing Anaconda](#installing-anaconda).
+2. To run PySpark, we first need to add it to PYTHONPATH:  
+   ```bash
+      export PYTHONPATH="${SPARK_HOME}/python/:$PYTHONPATH"
+      export PYTHONPATH="${SPARK_HOME}/python/lib/py4j-0.10.9.7-src.zip:$PYTHONPATH"
+   ```  
+3. Make sure that the version under `${SPARK_HOME}/python/lib/` matches the filename of py4j or you will encounter `ModuleNotFoundError: No module named 'py4j'` while executing import pyspark.
+
+
    
+
+
 
 
 
