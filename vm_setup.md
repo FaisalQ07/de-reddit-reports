@@ -16,7 +16,7 @@
      - [Installing Spark](#installing-spark)
    - [Cloning the course repo](#cloning-the-course-repo)
 5. [Open a Remote Connection from Visual Studio Code](#open-a-remote-connection-from-visual-studio-code)
-6. [Conclusion](#conclusion)
+6. [Project Setup Guide](#project-setup-guide)
 
 ## Configure SSH Keys
 1. Generate a new SSH key with the following commands:
@@ -243,12 +243,18 @@ Below steps can be followed for their installation -
       export PYTHONPATH="${SPARK_HOME}/python/:$PYTHONPATH"
       export PYTHONPATH="${SPARK_HOME}/python/lib/py4j-0.10.9.7-src.zip:$PYTHONPATH"
    ```  
-3. Make sure that the version under `${SPARK_HOME}/python/lib/` matches the filename of py4j or you will encounter `ModuleNotFoundError: No module named 'py4j'` while executing import pyspark.
+3. Make sure that the version under `${SPARK_HOME}/python/lib/` matches the filename of py4j or you will encounter `ModuleNotFoundError: No module named 'py4j'` while executing import pyspark.  
 
 
+### Open a Remote Connection from Visual Studio Code  
+1. Install the "Remote-SSH" extension.  
+   ![remote-ssh](./README_resources/setup/remote-ssh.PNG)  
+2. Press F1 and select "Remote SSH: Connect to Host". It will show you the hosts configured on your system.
+3. Select the one associated with your Virtual Machine. *`de-zoomcamp`* in my case
    
 
-
+## Project Setup Guide  
+![Link to Project Setup Guide](./project_setup.md)
 
 
 

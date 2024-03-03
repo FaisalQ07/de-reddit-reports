@@ -5,7 +5,7 @@
 1. [About](#about)
 2. [Features](#features)
 3. [Project Structure](#project-structure)
-4. [Setup Guide](#setup-guide)
+4. [VM Setup Guide](#vm-setup-guide)
 
 ## About
 **Powered by Mage-ai**
@@ -28,7 +28,7 @@ The Data Engineering Reddit Data Dashboard provides a comprehensive view of key 
 
 <img src="./README_resources/de-reddit-reports-architecture.drawio.png" alt="project_structure" width="1200"/>
 
-## Setup Guide
+## VM Setup Guide
 [Link to setup guide](./setup.md)
 
 
