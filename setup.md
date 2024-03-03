@@ -126,6 +126,26 @@ To set up a Virtual Machine:
 
 
 ### Installing docker-compose  
+1. go to [Docker Compose Releases](https://github.com/docker/compose/releases/tag/v2.24.1).  
+   Copy the link to the latest [release](https://github.com/docker/compose/releases/download/v2.24.1/docker-compose-linux-x86_64)  
+2. Create a new bin folder in VM and download the asset into it:  
+   ```bash
+      cd ~
+      mkdir bin
+      cd bin
+      wget https://github.com/docker/compose/releases/download/v2.24.1/docker-compose-linux-x86_64 -O docker-compose
+   ```  
+3. This will create a new file docker-compose in the bin folder.
+4. Make this file executable:  
+   `chmod +x docker-compose`  
+5. Next, add the bin folder to the path:  
+    *  Go to the home directory: `cd ~`  
+    *  Open the .bashrc file: `nano .bashrc`  
+    *  Paste the following to the end of the `.bashrc` file:
+       `export PATH="${HOME}/bin:${PATH}"`  
+    * Press `Ctrl+O` > `enter` > `Ctrl+X`  
+6. docker-compose installed successfully.  
+   ![docker-compose_installed](./README_resources/setup/docker-compose_installed.PNG)
 
 
   
