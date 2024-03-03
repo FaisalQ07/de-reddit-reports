@@ -14,7 +14,6 @@
    - [Installing Pyspark](#installing-pyspark)
      - [Installing Java](#installing-java)
      - [Installing Spark](#installing-spark)
-   - [Cloning the course repo](#cloning-the-course-repo)
 5. [Open a Remote Connection from Visual Studio Code](#open-a-remote-connection-from-visual-studio-code)
 6. [Project Setup Guide](#project-setup-guide)
 
