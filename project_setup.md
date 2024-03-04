@@ -10,6 +10,7 @@
 7. [Setup Mage-ai](#setup-mage-ai)
    - [Build Mage Image](#build-mage-image)
    - [Run Mage as Container](#run-mage-as-container)
+   - [Port Forwarding](#port-forwarding)
    - [Configure io_config.yaml](#configure-io_configyaml)
 
 
@@ -81,7 +82,9 @@ Mage setup includes the following steps:
    ```bash
       docker-compose up
    ```
-2. Forward port 6789 in your editor to be able to access Mage container.   
+
+### Port Forwarding  
+1. Forward port 6789 in your editor to be able to access Mage container.   
    If using VS Code  
     *  go-to `PORTS` tab in the terminal window.  
     *  Click on `Add Port`.  
