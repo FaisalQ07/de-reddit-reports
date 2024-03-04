@@ -14,7 +14,7 @@
 
 
 ## Cloning the course repo 
-Clone the [course repo](https://github.com/FaisalQ07/de-reddit-reports.git) into the home directory. Your final folder structure should look something like this:  
+Clone the [course repo](https://github.com/FaisalQ07/de-reddit-reports.git) into the Virtual Machine. Your final folder structure should look something like this:  
 ![cline_repo](./README_resources/project_setup_images/clone_repo.PNG)
 
 ## Add Service Account keyfile  
