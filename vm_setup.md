@@ -16,6 +16,7 @@
      - [Installing Spark](#installing-spark)
 5. [Open a Remote Connection from Visual Studio Code](#open-a-remote-connection-from-visual-studio-code)
 6. [Project Setup Guide](#project-setup-guide)
+7. [Go back](#go-back)
 
 ## Configure SSH Keys
 1. Generate a new SSH key with the following commands:
@@ -254,6 +255,10 @@ Below steps can be followed for their installation -
 
 ## Project Setup Guide  
 [Link to Project Setup Guide](./project_setup.md)
+
+
+## Go back   
+[Go back](./README.md)
 
 
 
