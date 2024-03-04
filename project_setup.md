@@ -13,7 +13,7 @@
    - [Port Forwarding](#port-forwarding)
    - [Configure io_config.yaml](#configure-io_configyaml)
 8. [Go back](#go-back)
-9 [Go to Project Readme](#go-to-project-readme)
+9. [Go to Project Readme](#go-to-project-readme)
 
 
 ## Cloning the course repo 
