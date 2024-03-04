@@ -12,6 +12,8 @@
    - [Run Mage as Container](#run-mage-as-container)
    - [Port Forwarding](#port-forwarding)
    - [Configure io_config.yaml](#configure-io_configyaml)
+8. [Go back](#go-back)
+9 [Go to Project Readme](#go-to-project-readme)
 
 
 ## Cloning the course repo 
@@ -112,3 +114,10 @@ Mage setup includes the following steps:
       import os
       os.getenv("REDDIT_APP_NAME")
    ```
+
+
+## Go back   
+[Go back](./vm_setup.md)
+
+### Go to Project Readme  
+[GO to Readme Page](./README.md)
