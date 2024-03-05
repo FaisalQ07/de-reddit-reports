@@ -18,4 +18,4 @@ services:
       - 6789:6789
     volumes:
       - .:/home/src/
-    restart: on-failure:5
+    # restart: on-failure:5

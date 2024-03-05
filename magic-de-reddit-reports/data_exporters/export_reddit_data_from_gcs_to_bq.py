@@ -30,7 +30,7 @@ def export_data(data, *args, **kwargs):
         -- \
         --input_date={run_date} \
         --input_subreddit={sub_reddit}
-"""
+    """
 
     # Execute the command
     os.system(command)
