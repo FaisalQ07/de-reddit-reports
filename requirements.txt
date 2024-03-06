@@ -1,1 +1,22 @@
+# Typing-extensions
+typing-extensions>=4.0.0,<5.0.0
+
+# Jinja2
+Jinja2>=3.0,<4.0
+
+# JSONSchema
+jsonschema>=4.18.0
+
+# Protobuf
+protobuf>=4.21.1,<5.0.0
+
+# Packaging
+packaging>23.1
+
+# Backoff
+backoff==1.8.0
+
+# Simplejson
+simplejson==3.11.1
+
 praw
