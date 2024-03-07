@@ -1,0 +1,14 @@
+reddit_dbt:
+  outputs:
+    dev:
+      dataset: reddit_dataset
+      job_execution_timeout_seconds: 300
+      job_retries: 1
+      keyfile: /home/src/keys/de-reddit-reports-f9479aba34a3.json
+      location: US
+      method: service-account
+      priority: interactive
+      project: de-reddit-reports
+      threads: 4
+      type: bigquery
+  target: dev
