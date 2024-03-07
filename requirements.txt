@@ -1,1 +1,31 @@
+# Typing-extensions
+typing-extensions>=4.0.0,<5.0.0
+
+# Jinja2
+Jinja2==3.1.2
+
+# JSONSchema
+jsonschema>=4.17.0
+
+# Protobuf
+protobuf>=4.21.1,<5.0.0
+
+# Packaging
+packaging>23.1
+
+# Backoff
+backoff>=1.8.0
+
+# Simplejson
+simplejson>=3.17.6
+
+# Jupyter
+jupyter-server==1.23.5
+
+#tornado
+tornado==6.1
+
+#attrs
+attrs>=17.4.0
+
 praw
