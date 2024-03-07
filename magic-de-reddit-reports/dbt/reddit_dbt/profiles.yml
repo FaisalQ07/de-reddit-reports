@@ -5,7 +5,7 @@ reddit_dbt:
       job_execution_timeout_seconds: 300
       job_retries: 1
       keyfile: /home/src/keys/de-reddit-reports-f9479aba34a3.json
-      location: US
+      location: northamerica-northeast1
       method: service-account
       priority: interactive
       project: de-reddit-reports

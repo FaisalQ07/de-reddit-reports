@@ -1,0 +1,9 @@
+version: 2
+
+sources:
+    - name: staging
+      database: de-reddit-reports
+      schema: reddit_dataset
+
+      tables:
+        - name: dataengineering_staging
