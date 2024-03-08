@@ -1,0 +1,35 @@
+sources:
+- description: Dataframes Mage upstream blocks
+  loader: mage
+  name: mage_reddit_dbt
+  schema: reddit_dataset
+  tables:
+  - description: Dataframe for block `export_reddit_data_from_gcs_to_bq` of the `volcanic_noble`
+      mage pipeline.
+    identifier: mage_volcanic_noble_export_reddit_data_from_gcs_to_bq
+    meta:
+      block_uuid: export_reddit_data_from_gcs_to_bq
+      pipeline_uuid: volcanic_noble
+    name: volcanic_noble_export_reddit_data_from_gcs_to_bq
+  - description: Dataframe for block `export_reddit_data_from_gcs_to_bq` of the `halcyon_enchanter`
+      mage pipeline.
+    identifier: mage_halcyon_enchanter_export_reddit_data_from_gcs_to_bq
+    meta:
+      block_uuid: export_reddit_data_from_gcs_to_bq
+      pipeline_uuid: halcyon_enchanter
+    name: halcyon_enchanter_export_reddit_data_from_gcs_to_bq
+  - description: Dataframe for block `export_reddit_data_from_gcs_to_bq` of the `visionary_echo`
+      mage pipeline.
+    identifier: mage_visionary_echo_export_reddit_data_from_gcs_to_bq
+    meta:
+      block_uuid: export_reddit_data_from_gcs_to_bq
+      pipeline_uuid: visionary_echo
+    name: visionary_echo_export_reddit_data_from_gcs_to_bq
+  - description: Dataframe for block `export_reddit_data_from_gcs_to_bq` of the `mystic_spellcaster`
+      mage pipeline.
+    identifier: mage_mystic_spellcaster_export_reddit_data_from_gcs_to_bq
+    meta:
+      block_uuid: export_reddit_data_from_gcs_to_bq
+      pipeline_uuid: mystic_spellcaster
+    name: mystic_spellcaster_export_reddit_data_from_gcs_to_bq
+version: 2
