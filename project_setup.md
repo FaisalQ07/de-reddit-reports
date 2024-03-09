@@ -13,8 +13,9 @@
    - [Port Forwarding](#port-forwarding)
    - [Configure io_config.yaml](#configure-io_configyaml)
 8. [Setup Google CLI in Mage-ai Container](#setup-google-cli-in-mage-ai-container)
-8. [Go back](#go-back)
-9. [Go to Project Readme](#go-to-project-readme)
+9. [Setup DBT project as sub-folder](#setup-dbt-project-as-sub-folder)
+10. [Go back](#go-back)
+11. [Go to Project Readme](#go-to-project-readme)
 
 
 ## Cloning the course repo 
@@ -117,6 +118,47 @@ Mage setup includes the following steps:
    ```
 
 ## Setup Google CLI in Mage-ai Container  
+The steps [Build Mage Image](#build-mage-image), and [Run Mage as Container](#run-mage-as-container) download and installs Google Cloud SDK in the Mage-ai container.  
+1. To verify if gcloud cli is installed, Open terminal in Mage-ai container and run cmd: `gcloud --version`. It should provide the version details.    
+   ![gcloud_version_mage-ai](./README_resources/project_setup_images/gcloud_version_mage-ai.PNG)  
+2. To authenticate with gcloud using a service account JSON file, use following steps:  
+   *  Set the GOOGLE_APPLICATION_CREDENTIALS Environment Variable:
+      ```bash
+         export GOOGLE_APPLICATION_CREDENTIALS=/path/to/your/key-file.json
+      ```  
+   *  Run gcloud auth activate-service-account Command:  
+      ```bash
+         gcloud auth activate-service-account --key-file=$GOOGLE_APPLICATION_CREDENTIALS
+      ```  
+   * Verify Authentication:  
+     You can verify that you are authenticated by running a command like `gcloud auth list` or `gcloud projects list`. This will show the authenticated account and the available projects.
+
+
+## Setup DBT project as sub-folder  
+The steps [Build Mage Image](#build-mage-image), and [Run Mage as Container](#run-mage-as-container) installs dbt-core and dbt bigquery connectors in the Mage-ai container.  
+To setup the dbt project, below two docs links helps  
+  *  [Add an existing dbt project to Mage](https://docs.mage.ai/dbt/add-existing-dbt)
+  *  [DBT Core Setup](https://docs.getdbt.com/docs/core/about-core-setup)  
+
+Steps to create DBT project `reddit_dbt`:
+1. cd to `magic-de-reddit-reports/dbt/`
+2. Run cmd `dbt init` to initialize a new dbt project and answer following questions:  
+    *  Enter a name for your project (letters, digits, underscore): <**dbt project name**> 
+    *  Which database would you like to use? <# **corresponding bigquery**>  
+    *  Desired authentication method option (enter a number): <*select 2* for **service account**>
+    *  keyfile (/path/to/bigquery/keyfile.json): <**path to [/keys/keyfile.json](#add-service-account-keyfile)**>  
+    *  project (GCP project id): <**GCP project-id** >  
+    *  dataset (the name of your dbt dataset): <**BigQuery dataset-name**>
+    *  threads (1 or more): <**4**>
+    *  ob_execution_timeout_seconds [300]: <*Leave blank for default*>  
+    *  Desired location option (enter a number): <*Select the number corresponding to your geo-location,* **US** *in this case*>
+   ![dbt_init](./README_resources/project_setup_images/dbt_init.PNG)  
+3. Step 2 makes Profile **reddit_dbt** written to **/home/src/magic-de-reddit-reports/dbt/profiles.yml** using target's profile_template.yml and your supplied values. 
+4. As per Mage-ai docs for [existing dbt projects](https://docs.mage.ai/dbt/add-existing-dbt), copy the profiles.yml code from step 3 and paste into the root of the reddit_dbt project as file **/dbt/reddit_dbt/profiles.yml**.  
+5. Run 'dbt debug' to validate the connection.  
+   ![dbt_debug](./README_resources/project_setup_images/dbt_debug.PNG)  
+
+
 
 
 ## Go back   
