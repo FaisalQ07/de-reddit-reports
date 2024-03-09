@@ -74,13 +74,13 @@ To extract Reddit data, one needs to utilize its Application Programming Interfa
 ## Setup Mage-ai
 Mage setup includes the following steps: 
 ### Build Mage Image  
-1. Execute the below command from the project directory path containing `Dockerfile` to build the image named `mageai_with_gcloud_sdk`
+1. Execute the below command from the project directory path containing `Dockerfile` to build the image named `mageai_with_gcloud_sdk_dbt`
    ```bash
-      docker build -t mageai_with_gcloud_sdk .
+      docker build -t mageai_with_gcloud_sdk_dbt .
    ```  
 
 ### Run Mage as Container  
-1. Execute the below command to run the image `mageai_with_gcloud_sdk` as a container  
+1. Execute the below command to run the image `mageai_with_gcloud_sdk_dbt` as a container  
    ```bash
       docker-compose up
    ```
