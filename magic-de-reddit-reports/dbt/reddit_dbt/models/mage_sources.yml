@@ -32,4 +32,18 @@ sources:
       block_uuid: export_reddit_data_from_gcs_to_bq
       pipeline_uuid: mystic_spellcaster
     name: mystic_spellcaster_export_reddit_data_from_gcs_to_bq
+  - description: Dataframe for block `export_reddit_data_from_gcs_to_bq` of the `unstoppable_herbalist`
+      mage pipeline.
+    identifier: mage_unstoppable_herbalist_export_reddit_data_from_gcs_to_bq
+    meta:
+      block_uuid: export_reddit_data_from_gcs_to_bq
+      pipeline_uuid: unstoppable_herbalist
+    name: unstoppable_herbalist_export_reddit_data_from_gcs_to_bq
+  - description: Dataframe for block `export_reddit_data_from_gcs_to_bq` of the `white_pine`
+      mage pipeline.
+    identifier: mage_white_pine_export_reddit_data_from_gcs_to_bq
+    meta:
+      block_uuid: export_reddit_data_from_gcs_to_bq
+      pipeline_uuid: white_pine
+    name: white_pine_export_reddit_data_from_gcs_to_bq
 version: 2
