@@ -12,6 +12,7 @@
    - [Run Mage as Container](#run-mage-as-container)
    - [Port Forwarding](#port-forwarding)
    - [Configure io_config.yaml](#configure-io_configyaml)
+8. [Setup Google CLI in Mage-ai Container](#setup-google-cli-in-mage-ai-container)
 8. [Go back](#go-back)
 9. [Go to Project Readme](#go-to-project-readme)
 
@@ -114,6 +115,8 @@ Mage setup includes the following steps:
       import os
       os.getenv("REDDIT_APP_NAME")
    ```
+
+## Setup Google CLI in Mage-ai Container  
 
 
 ## Go back   
