@@ -14,8 +14,9 @@
    - [Configure io_config.yaml](#configure-io_configyaml)
 8. [Setup Google CLI in Mage-ai Container](#setup-google-cli-in-mage-ai-container)
 9. [Setup DBT project as sub-folder](#setup-dbt-project-as-sub-folder)
-10. [Go back](#go-back)
-11. [Go to Project Readme](#go-to-project-readme)
+10. [Create Dataproc Cluster](#create-dataproc-cluster) 
+11. [Go back](#go-back)
+12. [Go to Project Readme](#go-to-project-readme)
 
 
 ## Cloning the course repo 
@@ -158,6 +159,39 @@ Steps to create DBT project `reddit_dbt`:
 5. Run 'dbt debug' to validate the connection.  
    ![dbt_debug](./README_resources/project_setup_images/dbt_debug.PNG)  
 
+
+## Create Dataproc Cluster  
+Method 1: Creating a Dataproc Cluster in GCP Console  
+  1. Navigate to the Dataproc page in GCP Console:  
+     * Go to the GCP Console: https://console.cloud.google.com/
+     * Select "Dataproc" from the left-hand navigation menu.
+  2. Create a new cluster:  
+     * Click on the "Create cluster" button.
+     * Fill in the necessary details like cluster name (**de-reddit-reports-cluster**), region, zone, number of workers, etc., according to your requirements.
+     * Click "Create" to provision the cluster.  
+
+Method 2: Creating a Dataproc Cluster using Terraform
+  1. In the main.tf, add the following configuration:  
+     ```bash
+        resource "google_dataproc_cluster" "de_reddit_reports_cluster" {
+         name          = "de-reddit-reports-cluster"
+         region        = "your-preferred-region"
+         cluster_config {
+            master_config {
+               num_instances = 1
+               machine_type = "n1-standard-4"
+            }
+
+            worker_config {
+               num_instances = 2
+               machine_type = "n1-standard-4"
+            }
+          }
+         }
+     ```
+* Make sure to edit the service account and add new role - **Dataproc Editor**  
+* Copy the python script **./notebooks/transform_bigquery.py** and place it under GCS bucket path - `reddit-terra-bucket/subreddit/dataengineering/code/transform_bigquery.py`
+* Dataproc cluster uses the pyspark script `transform_bigquery` to run the pyspark job
 
 
 
