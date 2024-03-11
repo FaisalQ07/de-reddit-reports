@@ -46,4 +46,25 @@ sources:
       block_uuid: export_reddit_data_from_gcs_to_bq
       pipeline_uuid: white_pine
     name: white_pine_export_reddit_data_from_gcs_to_bq
+  - description: Dataframe for block `export_reddit_data_from_gcs_to_bq` of the `masterful_firefly`
+      mage pipeline.
+    identifier: mage_masterful_firefly_export_reddit_data_from_gcs_to_bq
+    meta:
+      block_uuid: export_reddit_data_from_gcs_to_bq
+      pipeline_uuid: masterful_firefly
+    name: masterful_firefly_export_reddit_data_from_gcs_to_bq
+  - description: Dataframe for block `export_reddit_data_from_gcs_to_bq` of the `super_aurora`
+      mage pipeline.
+    identifier: mage_super_aurora_export_reddit_data_from_gcs_to_bq
+    meta:
+      block_uuid: export_reddit_data_from_gcs_to_bq
+      pipeline_uuid: super_aurora
+    name: super_aurora_export_reddit_data_from_gcs_to_bq
+  - description: Dataframe for block `export_reddit_data_from_gcs_to_bq` of the `late_oak`
+      mage pipeline.
+    identifier: mage_late_oak_export_reddit_data_from_gcs_to_bq
+    meta:
+      block_uuid: export_reddit_data_from_gcs_to_bq
+      pipeline_uuid: late_oak
+    name: late_oak_export_reddit_data_from_gcs_to_bq
 version: 2
