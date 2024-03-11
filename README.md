@@ -5,7 +5,9 @@
 1. [About](#about)
 2. [Features](#features)
 3. [Project Structure](#project-structure)
+4. [Reports Dashboard](#reports-dashboard)
 4. [VM Setup Guide](#vm-setup-guide)
+5. [Project Setup Guide](#project-setup-guide)
 
 ## About
 **Powered by Mage-ai**
@@ -27,10 +29,16 @@ The Data Engineering Reddit Data Dashboard offers a detailed overview of essenti
 
 ## Project Structure
 
-<img src="./README_resources/de-reddit-reports-architecture.drawio (2).png" alt="project_structure" width="1200"/>
+<img src="./README_resources/de-reddit-reports-architecture.drawio (2).png" alt="project_structure" width="1200"/>  
+
+## Reports Dashboard  
+![data_studio_de-report](./README_resources/data_studio_de-report.PNG)  
 
 ## VM Setup Guide
 [Link to VM setup guide](./vm_setup.md)
+
+## Project Setup Guide  
+[Link to Project Setup Guide](./project_setup.md)
 
 
 
