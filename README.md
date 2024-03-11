@@ -14,14 +14,14 @@
 </div>
 
 
-The Data Engineering Reddit Data Dashboard provides a comprehensive view of key statistics from the Data Engineering's subreddit, encompassing both posts and comments over the past week. It features an analysis of sentiments expressed in these posts, comments, and by the authors themselves, all tracked and evaluated on a daily basis.
+The Data Engineering Reddit Data Dashboard offers a detailed overview of essential metrics sourced from the Data Engineering subreddit, covering posts and comments on a daily basis. It features an analysis of sentiments expressed in these posts, comments, and by the authors themselves, all tracked and evaluated on a daily basis.
 
 ## Features
 
 1. The project is hosted on the Google Cloud Platform 
 2. Mage-ai is used for the orchestration of the ETL pipeline 
-3. Data manipulation is done through the Spark cluster(Google dataproc), where by increasing the worker node, the workload can be distributed across and finished fster if needed.
-4. The data transformation phase incorporates sentiment analysis on comments and posts to gauge the overall sentiment towards posts and commemts.
+3. Data manipulation is done through the Spark cluster(Google dataproc), where by increasing the worker node, the workload can be distributed across and finished faster if needed.
+4. The data transformation phase involves conducting sentiment analysis on both comments and posts to assess the overall sentiment towards them. Additionally, a count verification is included when joining the post and comment tables.
 5. Utilizing CDC principles, the project employs DBT to implement an incremental model, ensuring that data updates for posts and comments are captured and merged accurately in BigQuery to prevent duplication of records in the consolidated dataset. 
 6. For data visualization, the project utilizes Google Data Studio to create graphical representations.
 
