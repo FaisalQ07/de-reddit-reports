@@ -35,7 +35,7 @@ The Data Engineering Reddit Data Dashboard offers a detailed overview of essenti
 ![data_studio_de-report](./README_resources/data_studio_de-report.PNG)  
 
 ## VM Setup Guide
-[Link to VM setup guide](./vm_setup.md)
+[Link to VM Setup Guide](./vm_setup.md)
 
 ## Project Setup Guide  
 [Link to Project Setup Guide](./project_setup.md)
