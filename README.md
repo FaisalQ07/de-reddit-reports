@@ -8,18 +8,19 @@
 4. [Reports Dashboard](#reports-dashboard)
 4. [VM Setup Guide](#vm-setup-guide)
 5. [Project Setup Guide](#project-setup-guide)
+6. [Project Execution Guide](#project-execution-guide)
 
 ## About
-**Powered by Mage-ai**
-<div>
-<img src="https://github.com/mage-ai/assets/blob/main/mascots/mascots-shorter.jpeg?raw=true">
+<div style="position: relative;">
+  <img src="https://github.com/mage-ai/assets/blob/main/mascots/mascots-shorter.jpeg?raw=true" style="width: 100%;">
+  <div style="position: absolute; top: 5px; left: 5px; color: white; font-size: 18px; font-weight: bold;">
+    Powered by Mage-ai
+  </div>
 </div>
-
-
+  
 The Data Engineering Reddit Data Dashboard offers a detailed overview of essential metrics sourced from the Data Engineering subreddit, covering posts and comments on a daily basis. It features an analysis of sentiments expressed in these posts, comments, and by the authors themselves, all tracked and evaluated on a daily basis.
 
 ## Features
-
 1. The project is hosted on the Google Cloud Platform 
 2. Mage-ai is used for the orchestration of the ETL pipeline 
 3. Data manipulation is done through the Spark cluster(Google dataproc), where by increasing the worker node, the workload can be distributed across and finished faster if needed.
@@ -39,6 +40,9 @@ The Data Engineering Reddit Data Dashboard offers a detailed overview of essenti
 
 ## Project Setup Guide  
 [Link to Project Setup Guide](./project_setup.md)
+
+## Project Execution Guide  
+[Link to Project Execution Guide](./project_execution_guide.md) 
 
 
 
