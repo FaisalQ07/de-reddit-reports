@@ -14,9 +14,10 @@
    - [Configure io_config.yaml](#configure-io_configyaml)
 8. [Setup Google CLI in Mage-ai Container](#setup-google-cli-in-mage-ai-container)
 9. [Setup DBT project as sub-folder](#setup-dbt-project-as-sub-folder)
-10. [Create Dataproc Cluster](#create-dataproc-cluster) 
-11. [Go back](#go-back)
-12. [Go to Project Readme](#go-to-project-readme)
+10. [Create Dataproc Cluster](#create-dataproc-cluster)
+11. [Go to Project Execution Guide](#go-to-project-execution-guide) 
+12. [Go Back](#go-back)
+13. [Go to Project Readme](#go-to-project-readme)
 
 
 ## Cloning the course repo 
@@ -195,8 +196,11 @@ Method 2: Creating a Dataproc Cluster using Terraform
 
 
 
-## Go back   
+## Go to Project Execution Guide  
+[Link to Project Execution Guide](./project_execution_guide.md)  
+
+## Go Back   
 [Go back](./vm_setup.md)
 
 ### Go to Project Readme  
-[GO to Readme Page](./README.md)
+[Link to Readme Page](./README.md)

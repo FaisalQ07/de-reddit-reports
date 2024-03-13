@@ -4,6 +4,8 @@
 1. [Start Mage-ai Docker Container](#Start-Mage-ai-Docker-Container)
 2. [Pipeline Creation and Execution](#pipeline-creation-and-execution)
 3. [Dashboard Creation](#dashboard-creation)
+4. [Go Back](#go-back)
+5. [Go to Project Readme](#go-to-project-readme)
 
 
 ## Start Mage-ai Docker Container  
@@ -33,4 +35,12 @@ Dashboard creation is done via Google Data Studio
 ![connect_to_source](./README_resources/project_execution_guide_images/connect_to_source.PNG) 
 4.  in the next screen, we can see that the tool already suggests some aggregations for us. We set all of them to None, or custom select the fields for which to keep the "Sum" or "Count" aggregation.  
 ![select_aggregation](./README_resources/project_execution_guide_images/select_aggregation.PNG)  
-5. Click on the blue colored button named **CREATE REPORT** to add different reports like time-series, bar-chart, tables
+5. Click on the blue colored button named **CREATE REPORT** to add different reports like time-series, bar-chart, tables  
+
+
+## Go Back  
+[Link to Go Back](./project_setup.md)
+
+
+## Go to Project Readme  
+[Link to Readme Page](./README.md)
