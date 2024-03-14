@@ -2,35 +2,32 @@ blocks:
 - all_upstream_blocks_executed: true
   color: null
   configuration:
-    dbt_project_name: dbt/reddit_dbt
-    file_path: dbt/reddit_dbt/models/staging/reddit_data_consolidated.sql
     file_source:
-      path: dbt/reddit_dbt/models/staging/reddit_data_consolidated.sql
-      project_path: dbt/reddit_dbt
+      path: data_loaders/load_reddit_data.py
   downstream_blocks: []
   executor_config: null
   executor_type: local_python
   has_callback: false
-  language: sql
-  name: reddit_data_consolidated
+  language: python
+  name: load_reddit_data
   retry_config: null
   status: executed
   timeout: null
-  type: dbt
+  type: data_loader
   upstream_blocks: []
-  uuid: dbt/reddit_dbt/models/staging/reddit_data_consolidated
+  uuid: load_reddit_data
 cache_block_output_in_memory: false
 callbacks: []
 concurrency_config: {}
 conditionals: []
-created_at: '2024-03-11 20:02:26.022042+00:00'
+created_at: '2024-03-14 18:00:34.462833+00:00'
 data_integration: null
 description: null
 executor_config: {}
 executor_count: 1
 executor_type: null
 extensions: {}
-name: dawn water
+name: get_reddit_data
 notification_config: {}
 remote_variables_dir: null
 retry_config: {}
@@ -40,7 +37,10 @@ settings:
 spark_config: {}
 tags: []
 type: python
-updated_at: '2024-03-11 20:03:13'
-uuid: dawn_water
+updated_at: '2024-03-14 18:05:27'
+uuid: get_reddit_data
+variables:
+  bucket_name: reddit-terra-bucket
+  sub_reddit: dataengineering
 variables_dir: /root/.mage_data/magic-de-reddit-reports
 widgets: []

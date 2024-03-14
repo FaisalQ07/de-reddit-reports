@@ -34,7 +34,7 @@ The Data Engineering Reddit Data Dashboard offers a detailed overview of essenti
 <img src="./README_resources/de-reddit-reports-architecture.drawio (2).png" alt="project_structure" width="1200"/>  
 
 ## Reports Dashboard  
-![data_studio_de-report](./README_resources/data_studio_de-report.PNG)  
+![data_studio_de-report](./README_resources/data_studio_de-report_20240314.PNG)  
 
 ## VM Setup Guide
 [Link to VM Setup Guide](./vm_setup.md)

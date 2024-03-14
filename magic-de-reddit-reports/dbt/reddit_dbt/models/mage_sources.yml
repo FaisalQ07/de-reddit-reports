@@ -67,4 +67,18 @@ sources:
       block_uuid: export_reddit_data_from_gcs_to_bq
       pipeline_uuid: late_oak
     name: late_oak_export_reddit_data_from_gcs_to_bq
+  - description: Dataframe for block `export_reddit_data_from_gcs_to_bq` of the `resonant_inventor`
+      mage pipeline.
+    identifier: mage_resonant_inventor_export_reddit_data_from_gcs_to_bq
+    meta:
+      block_uuid: export_reddit_data_from_gcs_to_bq
+      pipeline_uuid: resonant_inventor
+    name: resonant_inventor_export_reddit_data_from_gcs_to_bq
+  - description: Dataframe for block `export_reddit_data_from_gcs_to_bq` of the `export_reddit_data_to_bq`
+      mage pipeline.
+    identifier: mage_export_reddit_data_to_bq_export_reddit_data_from_gcs_to_bq
+    meta:
+      block_uuid: export_reddit_data_from_gcs_to_bq
+      pipeline_uuid: export_reddit_data_to_bq
+    name: export_reddit_data_to_bq_export_reddit_data_from_gcs_to_bq
 version: 2
