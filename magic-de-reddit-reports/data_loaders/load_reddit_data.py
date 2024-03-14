@@ -58,6 +58,14 @@ COMMENT_FIELDS_DF = [
     "permalink"
 ]
 
+METADATA_FIELDS = [
+    'pipeline_run_date',    
+    'extraction_start_date',
+    'extraction_end_date',  
+    'total_posts',          
+    'total_comments'       
+]
+
 os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "/home/src/keys/de-reddit-reports-f9479aba34a3.json"
 
 # bucket_name = 'reddit-terra-bucket'
@@ -76,7 +84,7 @@ def load_data_from_api(*args, **kwargs):
         last_run_date = metadata_df['extraction_end_date'].iloc[0]
     else:
         # If metadata_df is empty, set last_run_date to current time minus 7 days and convert to local timezone (toronto)
-        last_run_date = convert_to_local_time(datetime.now() - timedelta(days=1))
+        last_run_date = convert_to_local_time(datetime.now() - timedelta(days=2))
     print(last_run_date)
 
     
@@ -121,7 +129,7 @@ def load_data_from_api(*args, **kwargs):
 
     write_metadata(metadata_df, **kwargs)
 
-    return metadata_df
+    return metadata_df, posts_df, comments_df
 
 
 def write_dataframe_to_gcs(dataframe, dataframe_type, destination_path, **kwargs):
@@ -204,7 +212,8 @@ def read_metadata(**kwargs):
         # If metadata file doesn't exist or cannot be read, return None
         return pd.DataFrame(columns=['last_run_date', 'extraction_start_date', 'extraction_end_date' 'total_posts', 'total_comments'])
     finally:
-        os.remove('temp_metadata.parquet')
+        if os.path.exists('temp_metadata.parquet'):
+            os.remove('temp_metadata.parquet')
 
 
 
@@ -282,8 +291,66 @@ def reddit_api_connect():
 
 
 @test
-def test_output(output, *args) -> None:
+def test_posts_dataframe_columns_exist(output, *args) -> None:
     """
-    Template code for testing the output of the block.
+    Checks if the posts dataframe containes all the required columns in POST_FIELDS.
     """
-    assert output is not None, 'The output is undefined'
+    post_df = pd.DataFrame(output[1])
+    # Check if the DataFrame isn't empty
+    assert not post_df.empty, "Comments DataFrame is empty"
+    # Check if all expected columns exist in the DataFrame
+    missing_columns = [col for col in POST_FIELDS if col not in post_df.columns]
+    assert len(missing_columns) == 0, f"Missing columns in Posts DataFrame: {missing_columns}"
+
+@test
+def test_posts_dataframe_columns_count(output, *args) -> None:
+    """
+    Checks if the posts dataframe containes same number of columns as in POST_FIELDS.
+    """
+    post_df = pd.DataFrame(output[1])
+    # Check if the count of columns matches the expected count
+    assert len(post_df.columns) == len(POST_FIELDS), "Number of columns in Posts Dataframe does not match expected count"
+
+@test
+def test_comments_dataframe_columns_exist(output, *args) -> None:
+    """
+    Checks if the posts dataframe containes all the required columns in POST_FIELDS.
+    """
+    comment_df = pd.DataFrame(output[2])
+    # Check if the DataFrame isn't empty
+    assert not comment_df.empty, "Comments DataFrame is empty"
+    # Check if all expected columns exist in the DataFrame
+    missing_columns = [col for col in COMMENT_FIELDS_DF if col not in comment_df.columns]
+    assert len(missing_columns) == 0, f"Missing columns in comments DataFrame: {missing_columns}"
+
+@test
+def test_comments_dataframe_columns_count(output, *args) -> None:
+    """
+    Checks if the posts dataframe containes same number of columns as in POST_FIELDS.
+    """
+    comment_df = pd.DataFrame(output[2])
+    # Check if the count of columns matches the expected count
+    assert len(comment_df.columns) == len(COMMENT_FIELDS_DF), "Number of columns in Comments Dataframe does not match expected count"
+
+@test
+def test_metadata_dataframe_columns_exist(output, *args) -> None:
+    """
+    Checks if the posts dataframe containes all the required columns in POST_FIELDS.
+    """
+    metadata_df = pd.DataFrame(output[0])
+    # Check if the DataFrame isn't empty
+    assert not metadata_df.empty, "Comments DataFrame is empty"
+    # Check if all expected columns exist in the DataFrame
+    missing_columns = [col for col in METADATA_FIELDS if col not in metadata_df.columns]
+    assert len(missing_columns) == 0, f"Missing columns in Metadata DataFrame: {missing_columns}"
+
+@test
+def test_metadata_dataframe_columns_count(output, *args) -> None:
+    """
+    Checks if the posts dataframe containes same number of columns as in POST_FIELDS.
+    """
+    metadata_df = pd.DataFrame(output[0])
+    # Check if the DataFrame isn't empty
+    assert not metadata_df.empty, "Comments DataFrame is empty"
+    # Check if the count of columns matches the expected count
+    assert len(metadata_df.columns) == len(METADATA_FIELDS), "Number of columns in Metadata Dataframe does not match expected count"
