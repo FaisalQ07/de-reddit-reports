@@ -81,4 +81,11 @@ sources:
       block_uuid: export_reddit_data_from_gcs_to_bq
       pipeline_uuid: export_reddit_data_to_bq
     name: export_reddit_data_to_bq_export_reddit_data_from_gcs_to_bq
+  - description: Dataframe for block `export_reddit_data_from_gcs_to_bq` of the `vivid_haiku`
+      mage pipeline.
+    identifier: mage_vivid_haiku_export_reddit_data_from_gcs_to_bq
+    meta:
+      block_uuid: export_reddit_data_from_gcs_to_bq
+      pipeline_uuid: vivid_haiku
+    name: vivid_haiku_export_reddit_data_from_gcs_to_bq
 version: 2

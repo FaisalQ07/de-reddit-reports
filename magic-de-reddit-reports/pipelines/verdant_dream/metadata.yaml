@@ -11,23 +11,40 @@ blocks:
   language: python
   name: load_reddit_data
   retry_config: null
-  status: executed
+  status: not_executed
   timeout: null
   type: data_loader
   upstream_blocks: []
   uuid: load_reddit_data
+- all_upstream_blocks_executed: true
+  color: null
+  configuration:
+    file_source:
+      path: data_loaders/load_metadata_from_gcs.py
+  downstream_blocks: []
+  executor_config: null
+  executor_type: local_python
+  has_callback: false
+  language: python
+  name: load_metadata_from_gcs
+  retry_config: null
+  status: not_executed
+  timeout: null
+  type: data_loader
+  upstream_blocks: []
+  uuid: load_metadata_from_gcs
 cache_block_output_in_memory: false
 callbacks: []
 concurrency_config: {}
 conditionals: []
-created_at: '2024-03-14 21:25:28.651758+00:00'
+created_at: '2024-03-16 18:16:27.206715+00:00'
 data_integration: null
 description: null
 executor_config: {}
 executor_count: 1
 executor_type: null
 extensions: {}
-name: get_reddit_data
+name: verdant dream
 notification_config: {}
 remote_variables_dir: null
 retry_config: {}
@@ -37,8 +54,7 @@ settings:
 spark_config: {}
 tags: []
 type: python
-updated_at: '2024-03-14T21:33:04+00:00'
-uuid: get_reddit_data
+uuid: verdant_dream
 variables:
   bucket_name: reddit-terra-bucket
   sub_reddit: dataengineering

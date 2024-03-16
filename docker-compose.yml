@@ -2,7 +2,8 @@ version: '3'
 services:
   magic:
     # image: mageai/mageai:latest
-    image: mageai_with_gcloud_sdk_dbt:latest
+    # image: mageai_with_gcloud_sdk_dbt:latest
+    image: mageai_with_gcloud_sdk_dbt_test_20240316:latest
     command: mage start ${PROJECT_NAME}
     env_file:
       - .env
