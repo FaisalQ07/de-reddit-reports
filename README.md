@@ -5,7 +5,7 @@
 1. [About](#about)
 2. [Features](#features)
 3. [Project Structure](#project-structure)
-4. [Project Contents](#project-content)  
+4. [Project Content](#project-content)  
    - [Connect](#connect)
    - [Buffer](#buffer)
    - [Processing](#processing)
