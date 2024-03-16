@@ -5,7 +5,7 @@
 1. [About](#about)
 2. [Features](#features)
 3. [Project Structure](#project-structure)
-4. [Project Contents](#project-contents)  
+4. [Project Contents](#project-content)  
    - [Connect](#connect)
    - [Buffer](#buffer)
    - [Processing](#processing)
@@ -40,7 +40,7 @@ The Data Engineering Reddit Data Dashboard offers a detailed overview of essenti
 
 <img src="./README_resources/de-reddit-reports-architecture.drawio (2).png" alt="project_structure" width="1200"/>  
 
-## Project Contents  
+## Project Content   
   * ## Connect   
       The Mage load block, named `load_reddit_data`, serves as the bridge to connect to the data source, Reddit API. It facilitates the extraction of top posts and their corresponding comments from Reddit within the specified timeframe defined by the start and end dates.  
       The load block executes the python script `magic-de-reddit-reports/data_loaders/load_reddit_data.py` which orchestrates the extraction process. It is responsible for fetching the required data and ensuring its integrity.  
