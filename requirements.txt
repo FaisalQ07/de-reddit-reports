@@ -29,7 +29,7 @@ jupyter-server<3 # mageai_with_gcloud_sdk_dbt_test_20240316:latest
 jupyter-client==7.4.4 # mageai_with_gcloud_sdk_dbt_test_20240316:latest
 
 #tornado
-#tornado==6.1 # mageai_with_gcloud_sdk_dbt:latest
+# tornado==6.1 # mageai_with_gcloud_sdk_dbt:latest
 tornado==6.3.3 # mageai_with_gcloud_sdk_dbt_test_20240316:latest
 
 #attrs
