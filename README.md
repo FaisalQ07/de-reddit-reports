@@ -42,7 +42,7 @@ The Data Engineering Reddit Data Dashboard offers a detailed overview of essenti
 
 ## Project Content   
   * ## Connect   
-      The Mage load block, named `load_reddit_data`, serves as the bridge to connect to the data source, Reddit API. It facilitates the extraction of top posts and their corresponding comments from Reddit within the specified timeframe defined by the start and end dates.  
+      The Mage load block, named **load_reddit_data**, serves as the bridge to connect to the data source, Reddit API. It facilitates the extraction of top posts and their corresponding comments from Reddit within the specified timeframe defined by the start and end dates.  
       The load block executes the python script `magic-de-reddit-reports/data_loaders/load_reddit_data.py` which orchestrates the extraction process. It is responsible for fetching the required data and ensuring its integrity.  
       The script contains test functions prefixed with test which validate the columns and their counts expected in the extracted posts and comments dataset.  
   
@@ -54,7 +54,7 @@ The Data Engineering Reddit Data Dashboard offers a detailed overview of essenti
        * Metadata - A metadata dataset containing pertinent information such as pipeline run date, extraction start date, extraction end date, total posts, and total comments is stored at  `reddit-terra-bucket/subreddit/dataengineering/metadata/metadata.parquet`  
 
   * ## Processing  
-       The processing is managed by the Mage block reddit_data_transformer, which involves two key scripts:    
+       The processing is managed by the Mage block **reddit_data_transformer**, which involves two key scripts:    
        1. **load_metadata_from_gcs** -  This script fetches relevant metadata, specifically the *last extraction end date*, essential for the processing flow. It is located at `/magic-de-reddit-reports/data_exporters/load_metadata_from_gcs`.
        2. **export_reddit_data_from_gcs_to_bq** - This script utilizes Google's Dataproc to execute PySpark transformations. The script, located at `/magic-de-reddit-reports/data_exporters/export_reddit_data_from_gcs_to_bq.py`, relies on the *last extraction end date* obtained from the preceding step to streamline data extraction and transformation processes.  
 
