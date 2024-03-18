@@ -54,9 +54,11 @@ The Data Engineering Reddit Data Dashboard offers a detailed overview of essenti
        * Metadata - A metadata dataset containing pertinent information such as pipeline run date, extraction start date, extraction end date, total posts, and total comments is stored at  `reddit-terra-bucket/subreddit/dataengineering/metadata/metadata.parquet`  
 
   * ## Processing  
-       The processing is depicted by the Mage block `reddit_data_trasformer`.  
-       Google's Dataproc is utilized to execute the PySpark transformation script `/magic-de-reddit-reports/data_exporters/export_reddit_data_from_gcs_to_bq.py`.  
-       This script orchestrates a series of transformation steps applied to all posts and comments extracted during the daily operation. The steps include -   
+       The processing is managed by the Mage block reddit_data_transformer, which involves two key scripts:    
+       1. **load_metadata_from_gcs** -  This script fetches relevant metadata, specifically the *last extraction end date*, essential for the processing flow. It is located at `/magic-de-reddit-reports/data_exporters/load_metadata_from_gcs`.
+       2. **export_reddit_data_from_gcs_to_bq** - This script utilizes Google's Dataproc to execute PySpark transformations. The script, located at `/magic-de-reddit-reports/data_exporters/export_reddit_data_from_gcs_to_bq.py`, relies on the *last extraction end date* obtained from the preceding step to streamline data extraction and transformation processes.  
+
+       The script **export_reddit_data_from_gcs_to_bq** orchestrates a series of transformation steps applied to all posts and comments extracted during the daily operation. The steps include -   
        * UDF `analyze_sentiment_score` - Perform sentiment analysis based on posts and comments text and generate a sentiment score.
        * UDF `count_checksum_verification` - Perform count verification to verify the counts of post and comment datasets before and after joining, ensuring data integrity.
        * Addition of new columns to the datasets based on the calculated sentiment scores.
