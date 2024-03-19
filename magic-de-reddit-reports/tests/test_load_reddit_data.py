@@ -1,11 +1,12 @@
 import unittest
 from unittest.mock import patch, MagicMock
 import pandas as pd
-from datetime import datetime
+from datetime import datetime,timedelta
 
 import sys
 sys.path.append('/home/src/magic-de-reddit-reports')
 from data_loaders.load_reddit_data import (
+    extract_reddit_data,
     load_data_from_api,
     convert_to_local_time,
     read_metadata,
@@ -14,6 +15,24 @@ from data_loaders.load_reddit_data import (
 )
 
 class TestLoadRedditData(unittest.TestCase):
+    
+    @patch('data_loaders.load_reddit_data.reddit_api_connect')
+    def test_extract_reddit_data(self, mock_reddit_api_connect):
+        # Mocking the subreddit and submission
+        mock_subreddit = mock_reddit_api_connect.subreddit.return_value
+        mock_submission = mock_subreddit.hot.return_value
+        mock_submission.__iter__.return_value = []
+
+        last_run_date = datetime.now() - timedelta(days=1)
+        sub_reddit = 'test_subreddit'
+        kwargs = {'sub_reddit': sub_reddit}
+        # Calling the function
+        posts, comments = extract_reddit_data(last_run_date, **kwargs)
+        # Assertions
+        self.assertIsInstance(posts, list)
+        self.assertIsInstance(comments, list)
+
+
     def test_convert_to_local_time(self):
         utc_datetime = datetime(2024, 3, 18, 12, 0, 0)
         # Call the function
@@ -48,7 +67,7 @@ class TestLoadRedditData(unittest.TestCase):
         # Mock Reddit instance
         instance_mock = MagicMock()
         mock_praw_reddit.return_value = instance_mock
-        #call reddit_api_connect()
+        #Call the function
         instance_returned = reddit_api_connect()
         self.assertEqual(instance_returned, instance_mock)
     
@@ -70,6 +89,9 @@ class TestLoadRedditData(unittest.TestCase):
         # Assert the expected method calls
         mock_storage.Client.assert_called_once()
         mock_client.get_bucket.assert_called_once_with(bucket_name)
+
+    
+
 
 
 
