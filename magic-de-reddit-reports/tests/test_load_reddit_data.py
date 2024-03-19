@@ -5,7 +5,7 @@ from datetime import datetime
 
 import sys
 sys.path.append('/home/src/magic-de-reddit-reports')
-from data_loaders.load_reddit_data import load_data_from_api, convert_to_local_time, read_metadata
+from data_loaders.load_reddit_data import load_data_from_api, convert_to_local_time, read_metadata, reddit_api_connect
 
 class TestLoadRedditData(unittest.TestCase):
     def test_convert_to_local_time(self):
@@ -29,14 +29,22 @@ class TestLoadRedditData(unittest.TestCase):
         mock_blob = MagicMock()
         mock_bucket.blob.return_value = mock_blob
         mock_client.return_value.get_bucket.return_value = mock_bucket
-
         # Mocking DataFrame returned by pd.read_parquet
         expected_df = MagicMock()
         mock_read_parquet.return_value = expected_df
-
         # Call the function
         metadata_df = read_metadata(bucket_name='test_bucket', sub_reddit='test_subreddit')
-
         # Assertions
         self.assertEqual(metadata_df, expected_df)
+    
+    @patch('data_loaders.load_reddit_data.praw.Reddit')
+    def test_reddit_api_connect(self, mock_praw_reddit):
+        # Mock Reddit instance
+        instance_mock = MagicMock()
+        mock_praw_reddit.return_value = instance_mock
+        #call reddit_api_connect()
+        instance_returned = reddit_api_connect()
+        self.assertEqual(instance_returned, instance_mock)
+
+
         
