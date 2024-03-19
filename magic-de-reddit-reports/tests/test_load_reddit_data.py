@@ -5,7 +5,13 @@ from datetime import datetime
 
 import sys
 sys.path.append('/home/src/magic-de-reddit-reports')
-from data_loaders.load_reddit_data import load_data_from_api, convert_to_local_time, read_metadata, reddit_api_connect
+from data_loaders.load_reddit_data import (
+    load_data_from_api,
+    convert_to_local_time,
+    read_metadata,
+    reddit_api_connect,
+    write_metadata
+)
 
 class TestLoadRedditData(unittest.TestCase):
     def test_convert_to_local_time(self):
@@ -45,6 +51,26 @@ class TestLoadRedditData(unittest.TestCase):
         #call reddit_api_connect()
         instance_returned = reddit_api_connect()
         self.assertEqual(instance_returned, instance_mock)
+    
+    @patch('data_loaders.load_reddit_data.storage')
+    def test_write_metadata(self, mock_storage):
+        # Mock the necessary objects
+        mock_client = MagicMock()
+        mock_storage.Client.return_value = mock_client
+        mock_bucket = MagicMock()
+        mock_client.get_bucket.return_value = mock_bucket
+        mock_blob = MagicMock()
+        mock_bucket.blob.return_value = mock_blob
+        # Define test data
+        metadata_df = MagicMock()  # Provide test DataFrame
+        bucket_name = "test_bucket"
+        sub_reddit = "test_subreddit"
+        # Call the function
+        write_metadata(metadata_df, bucket_name=bucket_name, sub_reddit=sub_reddit)
+        # Assert the expected method calls
+        mock_storage.Client.assert_called_once()
+        mock_client.get_bucket.assert_called_once_with(bucket_name)
+
 
 
         
