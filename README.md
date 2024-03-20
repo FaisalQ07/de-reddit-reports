@@ -73,7 +73,7 @@ The Data Engineering Reddit Data Dashboard offers a detailed overview of essenti
        This DBT model guarantees the incremental insertion of data into the `reddit_data_consolidated` table while also updating existing records. It achieves this through the utilization of a merge strategy as the incremental approach. This ensures that the consolidated table remains up-to-date with the latest data, facilitating accurate and efficient data analysis and reporting processes.  
 
   * ## Unit Tests  
-       The "tests" directory comprises unit-test scripts designed for both the data loader and data exporter modules.  
+       The `magic-de-reddit-reports/tests` directory comprises unit-test scripts designed for both the data loader and data exporter modules.  
        These tests comprehensively validate all functions within the modules, ensuring thorough examination.  
        Notably, the coverage analysis excludes print/logging statements and variable assignments.  
        As per the coverage report, the unit-tests effectively cover 75% of the codebase, affirming robust testing practices.  
