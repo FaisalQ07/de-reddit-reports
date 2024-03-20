@@ -7,3 +7,11 @@ sources:
 
       tables:
         - name: dataengineering_staging
+
+models:
+  - name: reddit_data_consolidated
+    columns:
+      - name: post_id
+      - name: comment_id
+    unique:
+      - [post_id, comment_id]

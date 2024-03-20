@@ -1,0 +1,46 @@
+blocks:
+- all_upstream_blocks_executed: true
+  color: null
+  configuration:
+    dbt_project_name: dbt/reddit_dbt
+    file_path: dbt/reddit_dbt/models/staging/reddit_data_consolidated.sql
+    file_source:
+      path: dbt/reddit_dbt/models/staging/reddit_data_consolidated.sql
+      project_path: dbt/reddit_dbt
+  downstream_blocks: []
+  executor_config: null
+  executor_type: local_python
+  has_callback: false
+  language: sql
+  name: reddit_data_consolidated
+  retry_config: null
+  status: executed
+  timeout: null
+  type: dbt
+  upstream_blocks: []
+  uuid: dbt/reddit_dbt/models/staging/reddit_data_consolidated
+cache_block_output_in_memory: false
+callbacks: []
+concurrency_config: {}
+conditionals: []
+created_at: '2024-03-20 19:52:16.580686+00:00'
+data_integration: null
+description: null
+executor_config: {}
+executor_count: 1
+executor_type: null
+extensions: {}
+name: spring glade
+notification_config: {}
+remote_variables_dir: null
+retry_config: {}
+run_pipeline_in_one_process: false
+settings:
+  triggers: null
+spark_config: {}
+tags: []
+type: python
+updated_at: '2024-03-20 19:52:38'
+uuid: spring_glade
+variables_dir: /root/.mage_data/magic-de-reddit-reports
+widgets: []

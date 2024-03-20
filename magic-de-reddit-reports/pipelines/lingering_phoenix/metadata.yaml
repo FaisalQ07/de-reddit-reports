@@ -2,33 +2,57 @@ blocks:
 - all_upstream_blocks_executed: true
   color: null
   configuration:
+    dbt_project_name: dbt/reddit_dbt
+    file_path: dbt/reddit_dbt/models/staging/reddit_data_consolidated.sql
     file_source:
-      path: data_loaders/load_reddit_data.py
+      path: dbt/reddit_dbt/models/staging/reddit_data_consolidated.sql
+      project_path: dbt/reddit_dbt
   downstream_blocks: []
   executor_config: null
   executor_type: local_python
   has_callback: false
-  language: python
-  name: load_reddit_data
+  language: sql
+  name: reddit_data_consolidated
   retry_config: null
-  status: not_executed
+  status: failed
   timeout: null
-  type: data_loader
-  upstream_blocks: []
-  uuid: load_reddit_data
+  type: dbt
+  upstream_blocks:
+  - export_reddit_data_from_gcs_to_bq
+  uuid: dbt/reddit_dbt/models/staging/reddit_data_consolidated
+- all_upstream_blocks_executed: true
+  color: null
+  configuration:
+    file_source:
+      path: data_exporters/export_reddit_data_from_gcs_to_bq.py
+  downstream_blocks:
+  - dbt/reddit_dbt/models/staging/reddit_data_consolidated
+  executor_config: null
+  executor_type: local_python
+  has_callback: false
+  language: python
+  name: export_reddit_data_from_gcs_to_bq
+  retry_config: null
+  status: executed
+  timeout: null
+  type: data_exporter
+  upstream_blocks:
+  - load_metadata_from_gcs
+  uuid: export_reddit_data_from_gcs_to_bq
 - all_upstream_blocks_executed: true
   color: null
   configuration:
     file_source:
       path: data_loaders/load_metadata_from_gcs.py
-  downstream_blocks: []
+  downstream_blocks:
+  - export_reddit_data_from_gcs_to_bq
   executor_config: null
   executor_type: local_python
   has_callback: false
   language: python
   name: load_metadata_from_gcs
   retry_config: null
-  status: not_executed
+  status: executed
   timeout: null
   type: data_loader
   upstream_blocks: []
@@ -37,14 +61,14 @@ cache_block_output_in_memory: false
 callbacks: []
 concurrency_config: {}
 conditionals: []
-created_at: '2024-03-16 18:16:27.206715+00:00'
+created_at: '2024-03-20 19:23:22.280284+00:00'
 data_integration: null
 description: null
 executor_config: {}
 executor_count: 1
 executor_type: null
 extensions: {}
-name: verdant dream
+name: lingering phoenix
 notification_config: {}
 remote_variables_dir: null
 retry_config: {}
@@ -54,7 +78,8 @@ settings:
 spark_config: {}
 tags: []
 type: python
-uuid: verdant_dream
+updated_at: '2024-03-20 19:50:02'
+uuid: lingering_phoenix
 variables:
   bucket_name: reddit-terra-bucket
   sub_reddit: dataengineering
