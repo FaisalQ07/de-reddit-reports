@@ -11,8 +11,8 @@
    - [Processing](#processing)
    - [Storage](#storage)
    - [Transformation](#transformation)
+   - [Unit Tests](#unit-tests)
    - [Visualization](#visualization)
-   - [Unit Tests --In-Progress]()
 5. [Reports Dashboard](#reports-dashboard)
 6. [VM Setup Guide](#vm-setup-guide)
 7. [Project Setup Guide](#project-setup-guide)
@@ -71,17 +71,26 @@ The Data Engineering Reddit Data Dashboard offers a detailed overview of essenti
   * ## Transformation  
        The DBT model located at `magic-de-reddit-reports/dbt/reddit_dbt/models/staging/reddit_data_consolidated.sql` employs the staging table within BigQuery, named `dataengineering_staging`, to integrate its data into the consolidated table, `reddit_data_consolidated`.  
        This DBT model guarantees the incremental insertion of data into the `reddit_data_consolidated` table while also updating existing records. It achieves this through the utilization of a merge strategy as the incremental approach. This ensures that the consolidated table remains up-to-date with the latest data, facilitating accurate and efficient data analysis and reporting processes.  
+
+  * ## Unit Tests  
+       The "tests" directory comprises unit-test scripts designed for both the data loader and data exporter modules.  
+       These tests comprehensively validate all functions within the modules, ensuring thorough examination.  
+       Notably, the coverage analysis excludes print/logging statements and variable assignments.  
+       As per the coverage report, the unit-tests effectively cover 75% of the codebase, affirming robust testing practices.  
+       ![test-coverage](./README_resources/unittest_coverage.PNG)
+
   
   * ## Visualization  
        Google Data Studio is utilized to create reporting dashboard.   
        It utilizes the BigQuery table `reddit_data_consolidated` as the data source.  
        More about Data Studio dashboard creation can be found [here](./project_execution_guide.md#dashboard-creation) 
 
-        
-
 
 ## Reports Dashboard  
-![data_studio_de-report](./README_resources/data_studio_de-report_20240316.PNG)  
+  * Tile 1  
+  ![data_studio_de-report-tile1](./README_resources/data_studio_de-report_20240320_tile1.PNG)  
+  * Tile 2
+  ![data_studio_de-report-tile2](./README_resources/data_studio_de-report_20240320_tile2.PNG)
 
 ## VM Setup Guide
 [Link to VM Setup Guide](./vm_setup.md)
