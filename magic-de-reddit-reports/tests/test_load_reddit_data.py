@@ -7,11 +7,11 @@ import sys
 sys.path.append('/home/src/magic-de-reddit-reports')
 from data_loaders.load_reddit_data import (
     extract_reddit_data,
-    load_data_from_api,
-    convert_to_local_time,
+    write_dataframe_to_gcs,
+    write_metadata,
     read_metadata,
-    reddit_api_connect,
-    write_metadata
+    convert_to_local_time,
+    reddit_api_connect
 )
 
 class TestLoadRedditData(unittest.TestCase):
@@ -45,6 +45,31 @@ class TestLoadRedditData(unittest.TestCase):
         self.assertEqual(local_datetime.month, 3)
         self.assertEqual(local_datetime.day, 18)
         self.assertEqual(local_datetime.hour, 8)  # Adjusted to Toronto time
+
+    @patch('data_loaders.load_reddit_data.storage.Client')
+    def test_write_dataframe_to_gcs(self, mock_storage_client):
+        # Mocking client, bucket, and blob
+        mock_client = MagicMock()
+        mock_storage_client.return_value = mock_client
+        mock_bucket = MagicMock()
+        mock_client.get_bucket.return_value = mock_bucket
+        mock_blob = MagicMock()
+        mock_bucket.blob.return_value = mock_blob
+        # mock input args
+        mock_dataframe = pd.DataFrame({
+            'Post_id': ['12ab', '34cd', '56ef'],
+            'post_author': ['A', 'B', 'C'],
+            'post_score': [4, 7, 9]
+        })
+        mock_dataframe_type = 'post'
+        mock_destination_path = MagicMock()
+        bucket_name = 'test-bucket'
+        # call the function 
+        write_dataframe_to_gcs(mock_dataframe, mock_dataframe_type, mock_destination_path, bucket_name=bucket_name)
+        # Assert the expected method calls
+        mock_client.get_bucket.assert_called_once_with(bucket_name)
+        mock_bucket.blob.assert_called_once_with(mock_destination_path)
+
 
     @patch('data_loaders.load_reddit_data.storage.Client')
     @patch('data_loaders.load_reddit_data.pd.read_parquet')
