@@ -82,7 +82,8 @@ The Data Engineering Reddit Data Dashboard offers a detailed overview of essenti
   
   * ## Visualization  
        Google Data Studio is utilized to create reporting dashboard.   
-       It utilizes the BigQuery table `reddit_data_consolidated` as the data source.  
+       It utilizes the BigQuery table `reddit_data_consolidated` as the data source.
+       Report can be viewed [here](https://lookerstudio.google.com/u/0/reporting/1579771e-37f1-4067-bdf9-ac4f72c554ff/page/peasD)  
        More about Data Studio dashboard creation can be found [here](./project_execution_guide.md#dashboard-creation) 
 
 
